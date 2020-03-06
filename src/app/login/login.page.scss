@@ -198,3 +198,19 @@ ion-card-content {
     display: flex;
     flex-direction: column;
 }
+
+ion-button.active {
+    border: 4px solid var(--ion-color-success);
+    border-radius: 15px;
+}
+
+.button-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 100px;
+
+    fa-icon {
+        margin-right: 12px;
+    }
+}

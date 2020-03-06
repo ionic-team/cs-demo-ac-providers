@@ -5,4 +5,5 @@ export interface Environment {
     webHost: string;
     appHost: string;
     auth0: IonicAuthOptions;
+    azure: IonicAuthOptions;
 }

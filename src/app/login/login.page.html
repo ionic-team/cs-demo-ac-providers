@@ -10,9 +10,14 @@
                 <ion-button
                     *ngFor="let m of methods"
                     [color]="m.color"
+                    [class.active]="m.state$ | async"
                     (click)="m.handler()"
                 >
-                    {{ m.name }} {{ (m.state$ | async) ? '- Logged In' : ''}}
+                    <span class="button-content">
+                        <fa-icon [icon]="m.icon"></fa-icon>
+                        {{ m.name }} {{ (m.state$ | async) ? '- Logged In' :
+                        ''}}
+                    </span>
                 </ion-button>
             </ion-card-content>
         </ion-card>

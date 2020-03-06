@@ -6,10 +6,14 @@ import {
     OktaService
 } from '@app/services';
 import { Observable, of } from 'rxjs';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { faAmazon, faMicrosoft } from '@fortawesome/free-brands-svg-icons';
+import { faStar, faCheckCircle } from '@fortawesome/free-regular-svg-icons';
 
 interface AuthMethod {
     name: string;
     color: string;
+    icon: IconDefinition;
     handler: () => void;
     state$: Observable<boolean>;
 }
@@ -24,46 +28,29 @@ export class LoginPage implements OnInit {
         {
             name: 'Auth0',
             color: 'danger',
+            icon: faStar,
             handler: () => this.useAuth0(),
             state$: this.auth0Service.authState$
         },
         {
             name: 'Azure B2C',
             color: 'tertiary',
-            handler: async () => {
-                // const authenticated = await this.auth0Service.isAuthenticated();
-                // if (authenticated) {
-                //     this.auth0Service.login();
-                // } else {
-                //     this.auth0Service.logout();
-                // }
-            },
-            state$: of(false)
+            icon: faMicrosoft,
+            handler: () => this.useAzure(),
+            state$: this.azureService.authState$
         },
         {
             name: 'Cognito',
             color: 'warning',
-            handler: async () => {
-                // const authenticated = await this.auth0Service.isAuthenticated();
-                // if (authenticated) {
-                //     this.auth0Service.login();
-                // } else {
-                //     this.auth0Service.logout();
-                // }
-            },
+            icon: faAmazon,
+            handler: () => {},
             state$: of(false)
         },
         {
             name: 'Okta',
             color: 'primary',
-            handler: async () => {
-                // const authenticated = await this.auth0Service.isAuthenticated();
-                // if (authenticated) {
-                //     this.auth0Service.login();
-                // } else {
-                //     this.auth0Service.logout();
-                // }
-            },
+            icon: faCheckCircle,
+            handler: () => {},
             state$: of(false)
         }
     ];
@@ -77,13 +64,21 @@ export class LoginPage implements OnInit {
 
     ngOnInit() {}
 
-    public async useAuth0(): Promise<void> {
+    private async useAuth0(): Promise<void> {
         const authenticated = await this.auth0Service.isAuthenticated();
-        console.log('auth', authenticated);
         if (authenticated) {
             this.auth0Service.logout();
         } else {
             this.auth0Service.login();
+        }
+    }
+
+    private async useAzure(): Promise<void> {
+        const authenticated = await this.azureService.isAuthenticated();
+        if (authenticated) {
+            this.azureService.logout();
+        } else {
+            this.azureService.login();
         }
     }
 }

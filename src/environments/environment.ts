@@ -19,6 +19,19 @@ export const environment: Environment = {
         logoutUrl: '',
         iosWebView: 'private',
         logLevel: 'DEBUG'
+    },
+    azure: {
+        authConfig: 'azure',
+        clientID: 'ed8cb65d-7bb2-4107-bc36-557fb680b994',
+        discoveryUrl:
+            'https://dtjacdemo.b2clogin.com/dtjacdemo.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=B2C_1_acdemo2',
+        redirectUri: '',
+        scope:
+            'openid offline_access email profile https://dtjacdemo.onmicrosoft.com/ed8cb65d-7bb2-4107-bc36-557fb680b994/demo.read',
+        audience: '',
+        logoutUrl: '',
+        iosWebView: 'private',
+        logLevel: 'DEBUG'
     }
 };
 
