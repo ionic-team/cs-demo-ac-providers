@@ -17,14 +17,12 @@ export class AzureService extends IonicAuth {
         super({
             ...environment.azure,
             platform: platform.is('capacitor') ? 'capacitor' : 'web',
-            redirectUri:
-                (platform.is('capacitor')
-                    ? environment.appHost
-                    : environment.webHost) + 'login',
-            logoutUrl:
-                (platform.is('capacitor')
-                    ? environment.appHost
-                    : environment.webHost) + 'login'
+            redirectUri: platform.is('capacitor')
+                ? 'msauth://com.ionic.acprovider/O5m5Gtd2Xt8UNkW3wk7DWyKGfv8%3D'
+                : environment.webHost + 'login',
+            logoutUrl: platform.is('capacitor')
+                ? 'msauth://com.ionic.acprovider/O5m5Gtd2Xt8UNkW3wk7DWyKGfv8%3D'
+                : environment.webHost + 'login'
         });
         this.initState();
     }

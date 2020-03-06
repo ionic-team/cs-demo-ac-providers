@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">cs-demo-ac-providers</string>
+    <string name="title_activity_main">cs-demo-ac-providers</string>
+    <string name="package_name">com.ionic.acprovider</string>
+    <string name="custom_url_scheme">com.ionic.acprovider</string>
+</resources>

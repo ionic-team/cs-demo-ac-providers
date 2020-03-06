@@ -9,12 +9,15 @@ import { Observable, of } from 'rxjs';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { faAmazon, faMicrosoft } from '@fortawesome/free-brands-svg-icons';
 import { faStar, faCheckCircle } from '@fortawesome/free-regular-svg-icons';
+import { faSync } from '@fortawesome/free-solid-svg-icons';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 
 interface AuthMethod {
     name: string;
     color: string;
     icon: IconDefinition;
     handler: () => void;
+    refreshStatus: (event: MouseEvent) => void;
     state$: Observable<boolean>;
 }
 
@@ -24,12 +27,17 @@ interface AuthMethod {
     styleUrls: ['./login.page.scss']
 })
 export class LoginPage implements OnInit {
+    public refreshIcon = faSync;
     public methods: AuthMethod[] = [
         {
             name: 'Auth0',
             color: 'danger',
             icon: faStar,
             handler: () => this.useAuth0(),
+            refreshStatus: event => {
+                event.stopPropagation();
+                this.auth0Service.isAuthenticated();
+            },
             state$: this.auth0Service.authState$
         },
         {
@@ -37,6 +45,10 @@ export class LoginPage implements OnInit {
             color: 'tertiary',
             icon: faMicrosoft,
             handler: () => this.useAzure(),
+            refreshStatus: event => {
+                event.stopPropagation();
+                this.azureService.isAuthenticated();
+            },
             state$: this.azureService.authState$
         },
         {
@@ -44,6 +56,9 @@ export class LoginPage implements OnInit {
             color: 'warning',
             icon: faAmazon,
             handler: () => {},
+            refreshStatus: event => {
+                event.stopPropagation();
+            },
             state$: of(false)
         },
         {
@@ -51,6 +66,9 @@ export class LoginPage implements OnInit {
             color: 'primary',
             icon: faCheckCircle,
             handler: () => {},
+            refreshStatus: event => {
+                event.stopPropagation();
+            },
             state$: of(false)
         }
     ];

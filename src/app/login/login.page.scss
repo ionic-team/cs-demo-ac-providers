@@ -208,9 +208,13 @@ ion-button.active {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    min-width: 100px;
+    min-width: 220px;
+
+    .spacer {
+        flex: 1;
+    }
 
     fa-icon {
-        margin-right: 12px;
+        margin: 0 12px;
     }
 }

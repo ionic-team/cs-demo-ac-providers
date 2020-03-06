@@ -17,6 +17,11 @@
                         <fa-icon [icon]="m.icon"></fa-icon>
                         {{ m.name }} {{ (m.state$ | async) ? '- Logged In' :
                         ''}}
+                        <span class="spacer"></span>
+                        <fa-icon
+                            [icon]="refreshIcon"
+                            (click)="m.refreshStatus($event)"
+                        ></fa-icon>
                     </span>
                 </ion-button>
             </ion-card-content>
