@@ -1,3 +1,19 @@
-export const environment = {
-  production: true
+import { Environment } from './environment.model';
+
+export const environment: Environment = {
+    production: true,
+    webHost: 'http://localhost:8100/',
+    appHost: 'com.ionic.acprovider://',
+    auth0: {
+        authConfig: 'auth0',
+        clientID: '1XaS52xS0XDdE0NUYKEEnF047AC53USl',
+        discoveryUrl:
+            'https://dev-j3wl8n0b.auth0.com/.well-known/openid-configuration',
+        redirectUri: '',
+        scope: 'openid offline_access email picture profile',
+        audience: '',
+        logoutUrl: '',
+        iosWebView: 'private',
+        logLevel: 'DEBUG'
+    }
 };

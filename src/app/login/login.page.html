@@ -1,0 +1,20 @@
+<ion-content>
+    <div class="page-container">
+        <ion-card>
+            <ion-card-header>
+                <ion-card-title>
+                    Auth Connect Demo
+                </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+                <ion-button
+                    *ngFor="let m of methods"
+                    [color]="m.color"
+                    (click)="m.handler()"
+                >
+                    {{ m.name }} {{ (m.state$ | async) ? '- Logged In' : ''}}
+                </ion-button>
+            </ion-card-content>
+        </ion-card>
+    </div>
+</ion-content>
