@@ -1,0 +1,7 @@
+{
+  "name": "cs-demo-ac-providers",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
