@@ -6,6 +6,7 @@ import {
     OktaService
 } from '@app/services';
 import { Observable, of } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { faAmazon, faMicrosoft } from '@fortawesome/free-brands-svg-icons';
 import { faStar, faCheckCircle } from '@fortawesome/free-regular-svg-icons';
@@ -55,22 +56,23 @@ export class LoginPage implements OnInit {
             name: 'Cognito',
             color: 'warning',
             icon: faAmazon,
-            handler: () => {},
+            handler: () => this.useCognito(),
             refreshStatus: event => {
                 event.stopPropagation();
+                this.cognitoService.isAuthenticated();
             },
-            state$: of(false)
-        },
-        {
-            name: 'Okta',
-            color: 'primary',
-            icon: faCheckCircle,
-            handler: () => {},
-            refreshStatus: event => {
-                event.stopPropagation();
-            },
-            state$: of(false)
+            state$: this.cognitoService.authState$
         }
+        // {
+        //     name: 'Okta',
+        //     color: 'primary',
+        //     icon: faCheckCircle,
+        //     handler: () => {},
+        //     refreshStatus: event => {
+        //         event.stopPropagation();
+        //     },
+        //     state$: of(false)
+        // }
     ];
 
     constructor(
@@ -97,6 +99,23 @@ export class LoginPage implements OnInit {
             this.azureService.logout();
         } else {
             this.azureService.login();
+        }
+    }
+
+    private async useCognito(): Promise<void> {
+        let authenticated = false;
+        this.cognitoService.authState$
+            .pipe(take(1))
+            .subscribe(a => (authenticated = a));
+        // try {
+        //     authenticated = await this.cognitoService.isAuthenticated();
+        // } catch (e) {
+        //     console.log('e', e);
+        // }
+        if (authenticated) {
+            this.cognitoService.logout();
+        } else {
+            this.cognitoService.login();
         }
     }
 }

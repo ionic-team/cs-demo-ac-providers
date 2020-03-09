@@ -24,7 +24,7 @@ export class Auth0Service extends IonicAuth {
             logoutUrl:
                 (platform.is('capacitor')
                     ? environment.appHost
-                    : environment.webHost) + 'login?logout=true'
+                    : environment.webHost) + 'login'
         });
         this.initState();
     }

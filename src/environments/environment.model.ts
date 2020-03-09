@@ -6,4 +6,5 @@ export interface Environment {
     appHost: string;
     auth0: IonicAuthOptions;
     azure: IonicAuthOptions;
+    congnito: IonicAuthOptions;
 }

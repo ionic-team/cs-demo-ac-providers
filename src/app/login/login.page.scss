@@ -199,9 +199,14 @@ ion-card-content {
     flex-direction: column;
 }
 
-ion-button.active {
-    border: 4px solid var(--ion-color-success);
-    border-radius: 15px;
+ion-button {
+    --border-radius: 12px;
+    min-height: 40px;
+
+    &.active {
+        border: 4px solid var(--ion-color-success);
+        border-radius: 15px;
+    }
 }
 
 .button-content {

@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bc4a3d56-3a47-45c4-b26e-5cf4342d1f9c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../capacitor.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../capacitor.config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../src/app/core/services/azure.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/core/services/azure.service.ts" afterDir="false" />
-    </list>
+    <list default="true" id="bc4a3d56-3a47-45c4-b26e-5cf4342d1f9c" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -217,7 +212,7 @@
   <component name="ToolWindowManager">
     <frame x="513" y="12" width="1390" height="1010" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" visible="true" weight="0.32935917" />
+      <window_info active="true" content_ui="combo" id="Project" visible="true" weight="0.32935917" />
       <window_info id="Structure" side_tool="true" />
       <window_info id="Build Variants" side_tool="true" />
       <window_info id="Image Layers" />
@@ -233,7 +228,7 @@
       <window_info anchor="bottom" id="Debug" />
       <window_info anchor="bottom" id="Terminal" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Build" visible="true" weight="0.32912844" />
+      <window_info anchor="bottom" id="Build" visible="true" weight="0.32912844" />
       <window_info anchor="bottom" id="Android Profiler" />
       <window_info anchor="right" id="Device File Explorer" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" />
