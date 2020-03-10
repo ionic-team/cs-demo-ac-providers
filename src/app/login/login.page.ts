@@ -104,14 +104,11 @@ export class LoginPage implements OnInit {
 
     private async useCognito(): Promise<void> {
         let authenticated = false;
-        this.cognitoService.authState$
-            .pipe(take(1))
-            .subscribe(a => (authenticated = a));
-        // try {
-        //     authenticated = await this.cognitoService.isAuthenticated();
-        // } catch (e) {
-        //     console.log('e', e);
-        // }
+        try {
+            authenticated = await this.cognitoService.isAuthenticated();
+        } catch (e) {
+            console.log('e', e);
+        }
         if (authenticated) {
             this.cognitoService.logout();
         } else {
