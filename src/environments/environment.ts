@@ -35,10 +35,6 @@ export const environment: Environment = {
     },
     congnito: {
         authConfig: 'cognito',
-        // clientID: '56hqlj6lclqhvrahq1v9376dp7',
-        // discoveryUrl:
-        //     'https://cognito-idp.eu-west-1.amazonaws.com/eu-west-1_rjFv44QIj/.well-known/openid-configuration',
-        // clientSecret: '',
         clientID: '4geagm2idmq87fii15dq9toild',
         discoveryUrl:
             'https://cognito-idp.us-east-2.amazonaws.com/us-east-2_YU8VQe29z/.well-known/openid-configuration',
@@ -56,7 +52,7 @@ export const environment: Environment = {
         discoveryUrl:
             'https://ionic-acdemo.okta.com/.well-known/openid-configuration',
         redirectUri: '',
-        scope: 'openid offline_access email picture profile',
+        scope: 'openid email profile',
         audience: '',
         logoutUrl: '',
         iosWebView: 'private',

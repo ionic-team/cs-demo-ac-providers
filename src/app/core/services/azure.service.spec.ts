@@ -6,7 +6,7 @@ describe('AzureService', () => {
     beforeEach(() => TestBed.configureTestingModule({}));
 
     it('should be created', () => {
-        const service: AzureService = TestBed.get(AzureService);
+        const service: AzureService = TestBed.inject(AzureService);
         expect(service).toBeTruthy();
     });
 });

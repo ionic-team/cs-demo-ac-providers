@@ -6,7 +6,7 @@ describe('CognitoService', () => {
     beforeEach(() => TestBed.configureTestingModule({}));
 
     it('should be created', () => {
-        const service: CognitoService = TestBed.get(CognitoService);
+        const service: CognitoService = TestBed.inject(CognitoService);
         expect(service).toBeTruthy();
     });
 });

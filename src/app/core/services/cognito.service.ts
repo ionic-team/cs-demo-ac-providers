@@ -25,8 +25,6 @@ export class CognitoService extends IonicAuth {
                 (platform.is('capacitor')
                     ? environment.appHost
                     : environment.webHost) + 'login'
-            // redirectUri: 'http://localhost:8100/auth/callback/'
-            // redirectUri: `${window.location.origin}/auth/callback/`
         });
         this.initState();
     }
