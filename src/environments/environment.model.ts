@@ -7,4 +7,5 @@ export interface Environment {
     auth0: IonicAuthOptions;
     azure: IonicAuthOptions;
     congnito: IonicAuthOptions;
+    okta: IonicAuthOptions;
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file:///media/data/Projects/Ionic/Trainings/cs-demo-ac-providers/android/android.iml" filepath="/media/data/Projects/Ionic/Trainings/cs-demo-ac-providers/android/android.iml" />
+      <module fileurl="file:///media/data/Projects/Ionic/Trainings/cs-demo-ac-providers/android/app/app.iml" filepath="/media/data/Projects/Ionic/Trainings/cs-demo-ac-providers/android/app/app.iml" />
+      <module fileurl="file:///media/data/Projects/Ionic/Trainings/cs-demo-ac-providers/node_modules/@capacitor/android/capacitor/capacitor-android.iml" filepath="/media/data/Projects/Ionic/Trainings/cs-demo-ac-providers/node_modules/@capacitor/android/capacitor/capacitor-android.iml" />
+      <module fileurl="file:///media/data/Projects/Ionic/Trainings/cs-demo-ac-providers/android/capacitor-cordova-android-plugins/capacitor-cordova-android-plugins.iml" filepath="/media/data/Projects/Ionic/Trainings/cs-demo-ac-providers/android/capacitor-cordova-android-plugins/capacitor-cordova-android-plugins.iml" />
+    </modules>
+  </component>
+</project>

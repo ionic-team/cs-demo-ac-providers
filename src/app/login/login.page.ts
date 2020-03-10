@@ -5,20 +5,23 @@ import {
     CognitoService,
     OktaService
 } from '@app/services';
-import { Observable, of } from 'rxjs';
+import { Observable, forkJoin, from, timer, of } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { faAmazon, faMicrosoft } from '@fortawesome/free-brands-svg-icons';
-import { faStar, faCheckCircle } from '@fortawesome/free-regular-svg-icons';
-import { faSync } from '@fortawesome/free-solid-svg-icons';
-import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import {
+    faSync,
+    faStar,
+    faCheckCircle
+} from '@fortawesome/free-solid-svg-icons';
 
 interface AuthMethod {
     name: string;
     color: string;
     icon: IconDefinition;
     handler: () => void;
-    refreshStatus: (event: MouseEvent) => void;
+    refresh: () => Promise<void>;
+    refreshing: boolean;
     state$: Observable<boolean>;
 }
 
@@ -35,10 +38,10 @@ export class LoginPage implements OnInit {
             color: 'danger',
             icon: faStar,
             handler: () => this.useAuth0(),
-            refreshStatus: event => {
-                event.stopPropagation();
-                this.auth0Service.isAuthenticated();
+            refresh: async () => {
+                await this.auth0Service.isAuthenticated();
             },
+            refreshing: false,
             state$: this.auth0Service.authState$
         },
         {
@@ -46,10 +49,10 @@ export class LoginPage implements OnInit {
             color: 'tertiary',
             icon: faMicrosoft,
             handler: () => this.useAzure(),
-            refreshStatus: event => {
-                event.stopPropagation();
-                this.azureService.isAuthenticated();
+            refresh: async () => {
+                await this.azureService.isAuthenticated();
             },
+            refreshing: false,
             state$: this.azureService.authState$
         },
         {
@@ -57,22 +60,23 @@ export class LoginPage implements OnInit {
             color: 'warning',
             icon: faAmazon,
             handler: () => this.useCognito(),
-            refreshStatus: event => {
-                event.stopPropagation();
-                this.cognitoService.isAuthenticated();
+            refresh: async () => {
+                await this.cognitoService.isAuthenticated();
             },
+            refreshing: false,
             state$: this.cognitoService.authState$
+        },
+        {
+            name: 'Okta',
+            color: 'primary',
+            icon: faCheckCircle,
+            handler: () => this.useOkta(),
+            refresh: async () => {
+                await this.oktaService.isAuthenticated();
+            },
+            refreshing: false,
+            state$: this.oktaService.authState$
         }
-        // {
-        //     name: 'Okta',
-        //     color: 'primary',
-        //     icon: faCheckCircle,
-        //     handler: () => {},
-        //     refreshStatus: event => {
-        //         event.stopPropagation();
-        //     },
-        //     state$: of(false)
-        // }
     ];
 
     constructor(
@@ -83,6 +87,27 @@ export class LoginPage implements OnInit {
     ) {}
 
     ngOnInit() {}
+
+    public async refresh(m: AuthMethod): Promise<void> {
+        m.refreshing = true;
+        forkJoin([from(m.refresh()), timer(1000).pipe(take(1))]).subscribe(
+            () => {
+                m.refreshing = false;
+            }
+        );
+    }
+
+    public isLight(color: string): boolean {
+        switch (color) {
+            case 'primary':
+            case 'tertiary':
+            case 'danger':
+            case 'dark':
+                return false;
+            default:
+                return true;
+        }
+    }
 
     private async useAuth0(): Promise<void> {
         const authenticated = await this.auth0Service.isAuthenticated();
@@ -113,6 +138,15 @@ export class LoginPage implements OnInit {
             this.cognitoService.logout();
         } else {
             this.cognitoService.login();
+        }
+    }
+
+    private async useOkta(): Promise<void> {
+        const authenticated = await this.oktaService.isAuthenticated();
+        if (authenticated) {
+            this.oktaService.logout();
+        } else {
+            this.oktaService.login();
         }
     }
 }

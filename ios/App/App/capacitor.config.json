@@ -1,0 +1,8 @@
+{
+    "appId": "com.ionic.acprovider",
+    "appName": "cs-demo-ac-providers",
+    "bundledWebRuntime": false,
+    "npmClient": "npm",
+    "webDir": "www",
+    "cordova": {}
+}

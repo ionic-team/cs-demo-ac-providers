@@ -49,6 +49,19 @@ export const environment: Environment = {
         logoutUrl: '',
         iosWebView: 'private',
         logLevel: 'DEBUG'
+    },
+    okta: {
+        authConfig: 'general',
+        clientID: '0oa39kaxufzwy2jtz4x6',
+        discoveryUrl:
+            'https://ionic-acdemo.okta.com/.well-known/openid-configuration',
+        redirectUri: '',
+        scope: 'openid offline_access email picture profile',
+        audience: '',
+        logoutUrl: '',
+        iosWebView: 'private',
+        logLevel: 'DEBUG',
+        webAuthFlow: 'PKCE'
     }
 };
 
