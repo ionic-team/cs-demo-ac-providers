@@ -22,7 +22,8 @@ export const environment: Environment = {
         discoveryUrl:
             'https://dtjacdemo.b2clogin.com/dtjacdemo.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=B2C_1_acdemo2',
         redirectUri: '',
-        scope: 'openid offline_access email profile',
+        scope:
+            'openid offline_access email profile https://dtjacdemo.onmicrosoft.com/ed8cb65d-7bb2-4107-bc36-557fb680b994/demo.read',
         audience: '',
         logoutUrl: '',
         iosWebView: 'private',
@@ -32,9 +33,10 @@ export const environment: Environment = {
         authConfig: 'cognito',
         clientID: '4geagm2idmq87fii15dq9toild',
         discoveryUrl:
-            'https://dtjacdemo.b2clogin.com/dtjacdemo.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=B2C_1_acdemo2',
+            'https://cognito-idp.us-east-2.amazonaws.com/us-east-2_YU8VQe29z/.well-known/openid-configuration',
+        clientSecret: '124dch1p6824ppuef8o71unk14d4pt3p5hnntofvu21i2m960r1g',
         redirectUri: '',
-        scope: 'openid offline_access email profile',
+        scope: 'openid email profile',
         audience: '',
         logoutUrl: '',
         iosWebView: 'private',
