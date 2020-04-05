@@ -49,7 +49,7 @@ export class OktaService extends IonicAuth {
     }
 
     private async setState(currentState: boolean): Promise<void> {
-        this.storage.set('okta', currentState);
+        await this.storage.set('okta', currentState);
         this.authState.next(currentState);
     }
 }

@@ -1,12 +1,42 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
+import { Storage } from '@ionic/storage';
+
+import { createStorageMock } from '@test/mocks';
 
 import { AzureService } from './azure.service';
 
 describe('AzureService', () => {
-    beforeEach(() => TestBed.configureTestingModule({}));
+    let azureService: AzureService;
 
-    it('should be created', () => {
-        const service: AzureService = TestBed.inject(AzureService);
-        expect(service).toBeTruthy();
+    beforeEach(() => TestBed.configureTestingModule({
+        providers: [{
+            provide: Storage, useValue: createStorageMock()
+        }]
+    }));
+
+    beforeEach(inject([AzureService], (service: AzureService) => {
+        azureService = service;
+    }));
+
+    it('injects', () => {
+        expect(azureService).toBeTruthy();
+    });
+
+    describe('login success', () => {
+        it('sets authState to true', async () => {
+            await azureService.onLoginSuccess();
+            azureService.authState$.subscribe(result => {
+                expect(result).toBeTruthy();
+            });
+        });
+    });
+
+    describe('logout', () => {
+        it('sets authState to false', async () => {
+            await azureService.onLogout();
+            azureService.authState$.subscribe(result => {
+                expect(result).toBeFalsy();
+            });
+        });
     });
 });

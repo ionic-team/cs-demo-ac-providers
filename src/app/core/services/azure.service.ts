@@ -47,7 +47,7 @@ export class AzureService extends IonicAuth {
     }
 
     private async setState(currentState: boolean): Promise<void> {
-        this.storage.set('azure', currentState);
+        await this.storage.set('azure', currentState);
         this.authState.next(currentState);
     }
 }

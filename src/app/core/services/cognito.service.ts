@@ -49,7 +49,7 @@ export class CognitoService extends IonicAuth {
     }
 
     private async setState(currentState: boolean): Promise<void> {
-        this.storage.set('cognito', currentState);
+        await this.storage.set('cognito', currentState);
         this.authState.next(currentState);
     }
 }

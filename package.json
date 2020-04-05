@@ -4,12 +4,13 @@
     "author": "Ionic Framework",
     "homepage": "https://ionicframework.com/",
     "scripts": {
+        "build": "ng build && npx cap sync",
+        "e2e": "ng e2e",
+        "lint": "ng lint",
         "ng": "ng",
         "start": "ionic serve",
-        "build": "ng build && npx cap sync",
-        "test": "ng test",
-        "lint": "ng lint",
-        "e2e": "ng e2e"
+        "test": "ng test --browsers=ChromeHeadless",
+        "test:debug": "ng test"
     },
     "private": true,
     "dependencies": {

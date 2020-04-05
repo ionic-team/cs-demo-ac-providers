@@ -49,7 +49,7 @@ export class Auth0Service extends IonicAuth {
     }
 
     private async setState(currentState: boolean): Promise<void> {
-        this.storage.set('auth0', currentState);
+        await this.storage.set('auth0', currentState);
         this.authState.next(currentState);
     }
 }
