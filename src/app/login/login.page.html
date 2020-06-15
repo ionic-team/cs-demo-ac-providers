@@ -32,7 +32,7 @@
                     </ion-label>
                     <div class="provider__actions">
                         <ion-button
-                            [color]="isLight(m.color) ? 'dark' : 'light'"
+                            [color]="!isLight(m.color) ? 'dark' : 'light'"
                             fill="outline"
                             (click)="m.handler()"
                         >

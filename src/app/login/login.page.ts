@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-    Auth0Service,
-    AzureService,
-    CognitoService,
-    OktaService
-} from '@app/services';
+import { AuthenticationService, AuthType } from '@app/services';
 import { Observable, forkJoin, from, timer, of } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
@@ -39,10 +34,12 @@ export class LoginPage implements OnInit {
             icon: faStar,
             handler: () => this.useAuth0(),
             refresh: async () => {
-                await this.auth0Service.isAuthenticated();
+                await this.authService
+                    .getAuth(AuthType.auth0)
+                    .isAuthenticated();
             },
             refreshing: false,
-            state$: this.auth0Service.authState$
+            state$: this.authService.getAuth(AuthType.auth0).state$
         },
         {
             name: 'Azure B2C',
@@ -50,10 +47,12 @@ export class LoginPage implements OnInit {
             icon: faMicrosoft,
             handler: () => this.useAzure(),
             refresh: async () => {
-                await this.azureService.isAuthenticated();
+                await this.authService
+                    .getAuth(AuthType.azureB2C)
+                    .isAuthenticated();
             },
             refreshing: false,
-            state$: this.azureService.authState$
+            state$: this.authService.getAuth(AuthType.azureB2C).state$
         },
         {
             name: 'Cognito',
@@ -61,10 +60,12 @@ export class LoginPage implements OnInit {
             icon: faAmazon,
             handler: () => this.useCognito(),
             refresh: async () => {
-                await this.cognitoService.isAuthenticated();
+                await this.authService
+                    .getAuth(AuthType.cognito)
+                    .isAuthenticated();
             },
             refreshing: false,
-            state$: this.cognitoService.authState$
+            state$: this.authService.getAuth(AuthType.cognito).state$
         },
         {
             name: 'Okta',
@@ -72,19 +73,14 @@ export class LoginPage implements OnInit {
             icon: faCheckCircle,
             handler: () => this.useOkta(),
             refresh: async () => {
-                await this.oktaService.isAuthenticated();
+                await this.authService.getAuth(AuthType.okta).isAuthenticated();
             },
             refreshing: false,
-            state$: this.oktaService.authState$
+            state$: this.authService.getAuth(AuthType.okta).state$
         }
     ];
 
-    constructor(
-        private auth0Service: Auth0Service,
-        private azureService: AzureService,
-        private cognitoService: CognitoService,
-        private oktaService: OktaService
-    ) {}
+    constructor(private authService: AuthenticationService) {}
 
     ngOnInit() {}
 
@@ -110,43 +106,42 @@ export class LoginPage implements OnInit {
     }
 
     private async useAuth0(): Promise<void> {
-        const authenticated = await this.auth0Service.isAuthenticated();
+        const auth0 = this.authService.getAuth(AuthType.auth0);
+        const authenticated = await auth0.isAuthenticated();
         if (authenticated) {
-            this.auth0Service.logout();
+            auth0.logout();
         } else {
-            this.auth0Service.login();
+            auth0.login();
         }
     }
 
     private async useAzure(): Promise<void> {
-        const authenticated = await this.azureService.isAuthenticated();
+        const azureB2C = this.authService.getAuth(AuthType.azureB2C);
+        const authenticated = await azureB2C.isAuthenticated();
         if (authenticated) {
-            this.azureService.logout();
+            azureB2C.logout();
         } else {
-            this.azureService.login();
+            azureB2C.login();
         }
     }
 
     private async useCognito(): Promise<void> {
-        let authenticated = false;
-        try {
-            authenticated = await this.cognitoService.isAuthenticated();
-        } catch (e) {
-            console.log('e', e);
-        }
+        const cognito = this.authService.getAuth(AuthType.cognito);
+        const authenticated = await cognito.isAuthenticated();
         if (authenticated) {
-            this.cognitoService.logout();
+            cognito.logout();
         } else {
-            this.cognitoService.login();
+            cognito.login();
         }
     }
 
     private async useOkta(): Promise<void> {
-        const authenticated = await this.oktaService.isAuthenticated();
+        const okta = this.authService.getAuth(AuthType.okta);
+        const authenticated = await okta.isAuthenticated();
         if (authenticated) {
-            this.oktaService.logout();
+            okta.logout();
         } else {
-            this.oktaService.login();
+            okta.login();
         }
     }
 }
