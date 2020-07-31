@@ -10,10 +10,10 @@ android {
 apply from: "../capacitor-cordova-android-plugins/cordova.variables.gradle"
 dependencies {
 
-    implementation "com.android.support:customtabs:26.1.0"
+    implementation "androidx.browser:browser:1.2.0"
     implementation "com.squareup.okhttp3:okhttp-urlconnection:3.10.0"
 }
-apply from: "../../node_modules/@ionic-enterprise/auth/build/android/SecureWebView-java18.gradle"
+
 
 if (hasProperty('postBuildExtras')) {
   postBuildExtras()
