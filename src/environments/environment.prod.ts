@@ -43,10 +43,10 @@ export const environment: Environment = {
     logLevel: 'DEBUG',
   },
   okta: {
-    authConfig: 'general',
-    clientID: '0oa39kaxufzwy2jtz4x6',
+    authConfig: 'okta',
+    clientID: '0oaur4c907I5uMr4I0h7',
     discoveryUrl:
-      'https://ionic-acdemo.okta.com/.well-known/openid-configuration',
+      'https://dev-622807.oktapreview.com/.well-known/openid-configuration',
     redirectUri: '',
     scope: 'openid email profile',
     audience: '',
