@@ -41,6 +41,7 @@ export const environment: Environment = {
     logoutUrl: '',
     iosWebView: 'private',
     logLevel: 'DEBUG',
+    webAuthFlow: 'PKCE',
   },
   okta: {
     authConfig: 'okta',
