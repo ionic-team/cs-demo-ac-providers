@@ -8,6 +8,9 @@
   <feature name="IonicHttp">
     <param name="ios-package" value="IonicHttp"/>
   </feature>
+  <feature name="IonicAuthConnectStorage">
+    <param name="ios-package" value="IonicAuthConnectStorage"/>
+  </feature>
 
   
 </widget>

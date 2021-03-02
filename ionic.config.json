@@ -1,7 +1,16 @@
 {
   "name": "cs-demo-ac-providers",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "enterprise": {
+      "keyId": 913,
+      "productKey": "key_c9231016997549d2b16756267b1daaa9",
+      "appId": "2a4cc4bf",
+      "orgId": "3cf21768-8696-4b83-bcba-e60e1a6db538",
+      "registries": [
+        "@ionic-enterprise;https://registry.ionicframework.com/"
+      ]
+    }
   },
   "type": "angular"
 }

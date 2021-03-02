@@ -9,6 +9,9 @@
   <feature name="IonicHttp">
     <param name="android-package" value="com.ionicframework.auth.ionichttp.IonicHttp"/>
   </feature>
+  <feature name="IonicAuthConnectStorage">
+    <param name="android-package" value="com.ionicframework.auth.ionicauthconnectstorage.IonicAuthConnectStorage"/>
+  </feature>
 
   
 </widget>
